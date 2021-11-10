@@ -1,7 +1,6 @@
 const dynamoose = require('dynamoose');
 
 exports.handler = async (event) => {
-  // TODO implement
 
   const peopleSchema = new dynamoose.Schema({
     'id': Number,
@@ -9,11 +8,13 @@ exports.handler = async (event) => {
     'role': String
   })
 
+  const peopleTable = dynamoose.model('people', peopleSchema);
+
   let data = null;
   let status = 500;
 
   try{
-    data = await peopleSchema.scan().exec();
+    data = await peopleTable.scan().exec();
     status = 200;
   } catch (e) {
     data = new Error(e)
