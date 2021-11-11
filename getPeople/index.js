@@ -8,7 +8,7 @@ exports.handler = async (event) => {
     'role': String
   })
 
-  const peopleTable = dynamoose.model('people', peopleSchema);
+  const peopleTable = dynamoose.model('people', peopleSchema, {"create": false});
 
   let data = null;
   let status = 500;
